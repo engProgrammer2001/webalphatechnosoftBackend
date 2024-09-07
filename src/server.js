@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors');
-const db = require('./src/config/db.js')
+const db = require('./config/db.js')
 const bodyParser = require("body-parser");
 const path = require("path");
 require ('dotenv').config()
@@ -17,10 +17,10 @@ app.get('/', function (req, res) {
 })
 
 
-const userRouter = require('./src/routes/user.route.js');
+const userRouter = require('./routes/user.route.js');
 app.use('/user', userRouter);
 
-const projectRouter = require('./src/routes/project.route.js');
+const projectRouter = require('./routes/project.route.js');
 app.use('/project', projectRouter);
 
 
