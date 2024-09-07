@@ -9,11 +9,10 @@ require ('dotenv').config()
 app.use(bodyParser.json());
 app.use(cors());
 
-// app.use(cors({
-//   origin: 'http://localhost:3000/', // Replace with your frontend URL
-//   methods: 'GET,POST,PUT,DELETE',
-//   allowedHeaders: 'Content-Type,Authorization'
-// }));
+app.use(cors({
+  origin: "http://localhost:3000/", // Replace with your client domain
+  credentials: true,
+}));
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
