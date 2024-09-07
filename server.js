@@ -7,13 +7,7 @@ const path = require("path");
 require('dotenv').config();
 
 app.use(bodyParser.json());
-
-// Configure CORS
-app.use(cors({
-  origin: 'http://localhost:3000', // Allow requests from your frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
-  credentials: true // Enable if you want to include cookies or authorization headers
-}));
+app.use(cors());
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 

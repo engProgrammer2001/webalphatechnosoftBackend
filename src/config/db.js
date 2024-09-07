@@ -8,6 +8,7 @@ const mongoUrl = process.env.MONGO_DB_URL;
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
 // });
+
 mongoose.connect(mongoUrl);
 
 
