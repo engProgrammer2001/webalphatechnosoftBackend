@@ -4,6 +4,7 @@ const cors = require('cors');
 const db = require('./src/config/db.js')
 const bodyParser = require("body-parser");
 const path = require("path");
+require ('dotenv').config()
 
 
 app.use(bodyParser.json());
@@ -23,7 +24,7 @@ const projectRouter = require('./src/routes/project.route.js');
 app.use('/project', projectRouter);
 
 
-const PORT = 5001;
+const PORT = process.env.PORT || 5001;
 
 app.listen(PORT , () => {
     console.log(`Server running on port ${PORT}`)
