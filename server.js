@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 require('dotenv').config();
 
+// this is use to convert the json data to javascript object
+app.use(express.json());
 // Allow CORS from your frontend URL
 app.use(cors({
   origin: 'http://localhost:3000', // Frontend URL
