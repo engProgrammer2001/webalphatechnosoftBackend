@@ -11,9 +11,6 @@ mongoose.connect(mongoUrl, {
 
 mongoose.connect(mongoUrl);
 
-
-mongoose.connect(mongoUrl);
-
 const db = mongoose.connection;
 
 db.on("connected", () => {
