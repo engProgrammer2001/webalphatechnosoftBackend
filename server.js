@@ -7,27 +7,15 @@ const path = require("path");
 require('dotenv').config();
 
 // Define allowed origins for CORS
-const allowedOrigins = ['http://localhost:3000']; // Replace with your actual frontend URL(s)
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  methods: 'GET,POST,PUT,DELETE',
+  credentials: true,  
+};
 
-app.use(cors({
-  origin: function (origin, callback) {
-    // Allow requests with no origin, like mobile apps or curl requests
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
-  methods: 'GET,PUT,PATCH,POST,DELETE',
-  allowedHeaders: ['Content-Type', 'Authorization', 'id'],
-  credentials: true,
-}));
+app.use(cors(corsOptions));
 
-// Middleware to handle preflight requests
-app.options('*', cors());
 
-// Middleware
 app.use(express.json());
 app.use(bodyParser.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
