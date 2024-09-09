@@ -10,8 +10,8 @@ app.use(express.json());
 app.use(cors({
   origin: 'http://localhost:3000', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'], 
-  allowedHeaders: ['Content-Type', 'Authorization'], 
-  AllowCredentials: true, 
+  allowedHeaders: ['Content-Type', 'Authorization', 'id'],
+  credentials: true, 
 }));
 
 app.use(bodyParser.json());
