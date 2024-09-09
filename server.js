@@ -6,14 +6,21 @@ const bodyParser = require("body-parser");
 const path = require("path");
 require('dotenv').config();
 
-// Define allowed origins for CORS
+// Allow localhost:3000 and other necessary headers
 const corsOptions = {
   origin: 'http://localhost:3000',
-  methods: 'GET,POST,PUT,DELETE',
-  credentials: true,  
+  methods: 'GET,POST,PUT,DELETE,OPTIONS',
+  allowedHeaders: 'Authorization,Content-Type',
+  credentials: true,
 };
 
-app.use(cors());
+app.use(cors(corsOptions));
+
+// Add logging to check if CORS is applied
+app.use((req, res, next) => {
+  console.log('CORS headers are set');
+  next();
+});
 
 app.use(express.json());
 app.use(bodyParser.json());
