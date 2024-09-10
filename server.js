@@ -8,7 +8,7 @@ require('dotenv').config();
 
 // Allow localhost:3000 and other necessary headers
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'https://webalphatechnosoft1.netlify.app/',
   methods: 'GET,POST,PUT,DELETE,OPTIONS',
   allowedHeaders: 'Authorization,Content-Type',
   credentials: true,
