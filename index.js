@@ -1,42 +1,38 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 const app = express();
 const db = require("./src/config/db.js");
 const bodyParser = require("body-parser");
 const path = require("path");
-require('dotenv').config();
+require("dotenv").config();
 
 const corsOptions = {
-    origin: "*",
-    credentials: true,
-    methods: ['GET','POST','PUT','DELETE','OPTIONS'],
-    allowedHeaders: ['Authorization', 'Content-Type', 'id'],
-  };
-  
-
-app.use(cors(corsOptions))
+  origin: "*",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Authorization", "Content-Type", "id"],
+};
+app.options("", cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Test route
-app.get('/', function (req, res) {
-  res.send('Congratulations! Your server is running on port 5757!');
+app.get("/", function (req, res) {
+  res.send("Congratulations! Your server is running on port 5757!");
 });
 
 // Routes
-const userRouter = require('./src/routes/user.route.js');
-app.use('/user', userRouter);
+const userRouter = require("./src/routes/user.route.js");
+app.use("/user", userRouter);
 
-const projectRouter = require('./src/routes/project.route.js');
-app.use('/project', projectRouter);
-
+const projectRouter = require("./src/routes/project.route.js");
+app.use("/project", projectRouter);
 
 const PORT = process.env.PORT || 5757;
-
 
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
