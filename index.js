@@ -7,14 +7,14 @@ const path = require("path");
 require('dotenv').config();
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
-    methods: 'GET,POST,PUT,DELETE,OPTIONS',
-    allowedHeaders: ['Authorization', 'Content-Type', 'id'],
+    origin: "*",
     credentials: true,
+    methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+    allowedHeaders: ['Authorization', 'Content-Type', 'id'],
   };
   
-  app.use(cors(corsOptions));
 
+app.use(cors(corsOptions))
 app.use(express.json());
 app.use(bodyParser.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
