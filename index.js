@@ -6,14 +6,17 @@ const bodyParser = require("body-parser");
 const path = require("path");
 require("dotenv").config();
 
+// CORS Configuration
 const corsOptions = {
-  origin: "*",
-  credentials: true,
+  origin: "http://localhost:3000",  // Specify the allowed origin
+  credentials: true,               // Allow credentials (cookies, headers)
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Authorization", "Content-Type", "id"],
 };
-app.options("", cors(corsOptions));
+
+// Apply CORS middleware
 app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use(bodyParser.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
