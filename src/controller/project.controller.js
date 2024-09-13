@@ -151,8 +151,7 @@ const getAllProjects = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Error getting projects", error: error.message });
-      res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+      .json({ message: "Error getting from get all projects", error: error.message });
   }
 };
 
