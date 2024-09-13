@@ -6,16 +6,26 @@ const bodyParser = require("body-parser");
 const path = require("path");
 require("dotenv").config();
 
-// CORS Configuration
-const corsOptions = {
-  origin: "http://localhost:3000",  // Specify the allowed origin
-  credentials: 'include',              // Allow credentials (cookies, headers)
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Authorization", "Content-Type", "id"],
-};
+// Additional middleware to set CORS headers manually (optional)
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Credentials", "true"); // Allow credentials
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000"); // Allow specific origin
+  next();
+});
 
-// Apply CORS middleware
-app.use(cors(corsOptions));
+// Middleware to handle preflight requests
+app.options("/user/login", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization"); // Allow specific headers
+  res.setHeader("Access-Control-Allow-Credentials", "true"); // Allow credentials
+  res.sendStatus(204); // No Content
+});
+app.use(cors());
+
 
 app.use(express.json());
 app.use(bodyParser.json());
